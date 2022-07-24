@@ -1,0 +1,31 @@
+name: CI-CD_Pipelone-to-AWS-ElasticBeanstalk
+env:
+  EB_PACKAGE_S3_BUCKET_NAME : "last-pro-in-gh-s3"
+  EB_APPPICATION_NAME       : "MyFlask"
+  EB_ENVIRONMENT_NAME       : "Myflask-env"
+  DEPLOY_PACKAGE_NAME       : "flask_app_${{ github.sha }}.zip"
+  AWS_REGION_NAME           : "us-east-1"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git clone our repo
+      - uses: actions/checkout@v3
+
+      - name: Create ZIP deployment package
+        run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.

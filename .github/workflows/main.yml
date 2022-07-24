@@ -8,14 +8,13 @@ env:
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: 
+      - master
 
   workflow_dispatch:
 
 jobs:
-  build:
+  my_ci_part:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +24,3 @@ jobs:
       - name: Create ZIP deployment package
         run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.

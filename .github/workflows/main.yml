@@ -1,4 +1,4 @@
-name: CI-CD_Pipelone-to-AWS-ElasticBeanstalk
+name: CI-CD-Pipeline-to-AWS-ElasticBeanstalk
 env:
   EB_PACKAGE_S3_BUCKET_NAME : "last-pro-in-gh-s3"
   EB_APPPICATION_NAME       : "MyFlask"
@@ -11,7 +11,6 @@ on:
     branches: 
       - master
 
-  workflow_dispatch:
 
 jobs:
   my_ci_part:
